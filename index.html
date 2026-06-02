@@ -110,6 +110,84 @@
             border-color: rgba(59,130,246,0.25) !important;
             background: rgba(59,130,246,0.04) !important;
         }
+
+        /* ─── MOBILE ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+
+            /* Nav: hide links */
+            nav div[style*="gap:2rem"] { display: none !important; }
+
+            /* Sections: reduce vertical padding */
+            section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+
+            /* All content containers: tighter horizontal padding */
+            div[style*="max-width:72rem"] { padding-left: 1rem !important; padding-right: 1rem !important; }
+
+            /* Hero: stack to single column */
+            div[style*="gap:4rem; align-items:center"] {
+                grid-template-columns: 1fr !important;
+            }
+            /* Hide profile photo on mobile */
+            div:has(> img[src="profile.jpg"]) { display: none !important; }
+
+            /* Stats: 2×2 grid */
+            div[style*="repeat(4,1fr)"] {
+                grid-template-columns: repeat(2,1fr) !important;
+                margin-top: 2rem !important;
+            }
+
+            /* About: single column */
+            div[style*="gap:4.5rem; align-items:start"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            /* Career: single column, remove center layout */
+            div[style*="gap:2.5rem; align-items:start; position:relative"] {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem !important;
+            }
+            div[style*="text-align:right; padding-right:3rem"] {
+                text-align: left !important;
+                padding-right: 0 !important;
+            }
+            div[style*="padding-left:3rem"] { padding-left: 0 !important; }
+            .timeline-line { display: none !important; }
+            div[style*="position:absolute; left:50%; top:0.5rem"] { display: none !important; }
+            div[style*="position:absolute; left:50%; top:0.5rem; width:12px"] { display: none !important; }
+
+            /* Competencies: single column */
+            div[style*="repeat(3,1fr); gap:1.5rem"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* AI project cards: single column */
+            div[style*="gap:1.5rem; margin-bottom:1.5rem"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Sport: single column */
+            div[style*="gap:5rem; align-items:start"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            /* Sport insight cards: single column */
+            div[style*="repeat(3,1fr); gap:1rem"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Hero title size on small screens */
+            h1[style*="clamp"] { font-size: clamp(2.25rem,9vw,3rem) !important; }
+
+            /* Section headings */
+            h2[style*="clamp"] { font-size: 1.5rem !important; }
+
+            /* Touch team photo: full width */
+            #sport img { width: 100% !important; }
+
+            /* Contact buttons: full width */
+            #contact a[href] { max-width: 100% !important; }
+        }
     </style>
 </head>
 <body>
