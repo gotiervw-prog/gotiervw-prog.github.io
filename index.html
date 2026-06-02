@@ -105,6 +105,35 @@
             border-color: rgba(245,158,11,0.25) !important;
         }
 
+        /* ── MOBILE MENU ── */
+        .hamburger {
+            display: none;
+            background: none; border: none; cursor: pointer;
+            padding: 0.25rem; color: #94a3b8;
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed; top: 48px; left: 0; right: 0; bottom: 0;
+            background: rgba(7,12,24,0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 49;
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 2rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.625rem; font-weight: 600;
+            color: #64748b; text-decoration: none;
+            transition: color 0.2s;
+        }
+        .mobile-menu a:active { color: white; }
+        .mobile-menu a.mob-contact { color: #60a5fa; }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+        }
+
         /* Stat card glow on hover */
         .stat-card:hover {
             border-color: rgba(59,130,246,0.25) !important;
@@ -214,8 +243,22 @@
             <a href="#sport"  style="color:#94a3b8; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">Sport</a>
             <a href="#contact" style="color:#60a5fa; text-decoration:none; font-weight:500;">Contact</a>
         </div>
+        <!-- Hamburger — mobile only -->
+        <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+            <svg id="ham-icon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
     </div>
 </nav>
+
+<!-- Mobile full-screen menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <a href="#about"       onclick="closeMobileMenu()">About</a>
+    <a href="#career"      onclick="closeMobileMenu()">Career</a>
+    <a href="#competencies" onclick="closeMobileMenu()">Competencies</a>
+    <a href="#ai"          onclick="closeMobileMenu()">AI in Practice</a>
+    <a href="#sport"       onclick="closeMobileMenu()">Sport</a>
+    <a href="#contact"     onclick="closeMobileMenu()" class="mob-contact">Contact</a>
+</div>
 
 
 <!-- ─── HERO ───────────────────────────────────────────────── -->
@@ -809,6 +852,20 @@
     }, { threshold: 0.5 });
 
     document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Mobile menu
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('ham-icon');
+        const open = menu.classList.toggle('open');
+        icon.innerHTML = open
+            ? '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>'
+            : '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>';
+    }
+    function closeMobileMenu() {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.getElementById('ham-icon').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>';
+    }
 </script>
 
 </body>
