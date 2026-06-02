@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Tech Data & Analytics Director — Gauthier Van Went</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+            background: #070c18;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+        }
+
+        .d { font-family: 'Space Grotesk', sans-serif; }
+
+        /* ── LAYOUT SHELL ── */
+        .shell {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 48px 72px 1fr 48px;
+        }
+
+        /* ── TOP NAV ── */
+        .top-nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 1.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: rgba(7,12,24,0.95);
+        }
+        .top-nav a { text-decoration: none; color: #64748b; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: color .15s; }
+        .top-nav a:hover { color: #cbd5e1; }
+        .role-badge {
+            font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+            color: #3b82f6; background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+            padding: 3px 10px; border-radius: 9999px;
+        }
+
+        /* ── TITLE BAR ── */
+        .title-bar {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0 1.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,.012);
+        }
+        .title-meta {
+            font-size: 10.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+            color: #3b82f6; margin-bottom: 5px;
+        }
+        .title-meta span { color: #334155; margin: 0 6px; }
+        .page-title {
+            font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+            font-weight: 700; color: white; line-height: 1.15;
+        }
+        .page-title em { font-style: normal; color: #60a5fa; }
+
+        /* ── MAIN GRID ── */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 56% 44%;
+            overflow: hidden;
+        }
+
+        /* ── LEFT PANEL ── */
+        .left-panel {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+
+        /* Role Overview */
+        .overview-block {
+            padding: 1.125rem 1.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: rgba(59,130,246,.03);
+        }
+
+        /* KPI block */
+        .kpi-block {
+            padding: 1rem 1.75rem 1.125rem;
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .625rem;
+            flex: 1;
+            margin-top: .625rem;
+        }
+        .kpi-card {
+            padding: .875rem 1rem;
+            border-radius: .625rem;
+            border: 1px solid rgba(255,255,255,.07);
+            background: rgba(255,255,255,.02);
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: border-color .2s, background .2s;
+        }
+        .kpi-card:hover { border-color: rgba(59,130,246,.35); background: rgba(59,130,246,.05); }
+        .kpi-metric { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1; margin-bottom: .3rem; }
+        .kpi-label  { font-weight: 600; color: #f1f5f9; font-size: 11.5px; margin-bottom: .2rem; }
+        .kpi-desc   { font-size: 11px; color: #94a3b8; line-height: 1.45; }
+
+        .kpi-green  { color: #34d399; }
+        .kpi-blue   { color: #60a5fa; }
+        .kpi-violet { color: #c4b5fd; }
+        .kpi-amber  { color: #fbbf24; }
+        .kpi-teal   { color: #22d3ee; }
+
+        /* ── RIGHT PANEL ── */
+        .right-panel {
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            overflow: hidden;
+        }
+        .detail-section {
+            padding: .875rem 1.375rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .detail-section:last-child { border-bottom: none; }
+        .detail-section::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            border-radius: 0 2px 2px 0;
+        }
+        .ds-tech::before       { background: #3b82f6; }
+        .ds-business::before   { background: #7c3aed; }
+        .ds-leadership::before { background: #10b981; }
+        .ds-stakeholders::before { background: #f59e0b; }
+
+        .section-header {
+            display: flex; align-items: center; gap: .5rem;
+            margin-bottom: .625rem;
+        }
+        .section-icon {
+            width: 22px; height: 22px;
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .si-tech        { background: rgba(59,130,246,.15); }
+        .si-business    { background: rgba(124,58,237,.15); }
+        .si-leadership  { background: rgba(16,185,129,.15); }
+        .si-stakeholders{ background: rgba(245,158,11,.15); }
+
+        .section-label {
+            font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+        }
+        .sl-tech        { color: #60a5fa; }
+        .sl-business    { color: #a78bfa; }
+        .sl-leadership  { color: #34d399; }
+        .sl-stakeholders{ color: #fbbf24; }
+
+        .bullets { display: flex; flex-direction: column; gap: .4rem; }
+        .bullet {
+            display: flex; align-items: flex-start; gap: .5rem;
+            font-size: 12px; color: #cbd5e1; line-height: 1.5;
+        }
+        .bullet-dot {
+            width: 5px; height: 5px; border-radius: 9999px;
+            flex-shrink: 0; margin-top: .45rem;
+        }
+        .bd-tech        { background: #3b82f6; }
+        .bd-business    { background: #7c3aed; }
+        .bd-leadership  { background: #10b981; }
+        .bd-stakeholders{ background: #f59e0b; }
+
+        strong.hi { color: #e2e8f0; font-weight: 600; }
+
+        /* Tech pills */
+        .pill-row { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .5rem; }
+        .pill {
+            padding: 2px 8px; border-radius: 4px;
+            font-size: 10.5px; font-weight: 500;
+            background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2); color: #93c5fd;
+        }
+
+        /* Section common labels */
+        .block-label {
+            font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+            color: #3b82f6; display: flex; align-items: center; gap: .4rem; margin-bottom: .4rem;
+        }
+        .block-label.green  { color: #34d399; }
+
+        /* ── BOTTOM NAV ── */
+        .bottom-nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 1.75rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: rgba(7,12,24,.95);
+        }
+        .nav-btn {
+            display: flex; align-items: center; gap: .5rem;
+            text-decoration: none; color: #64748b; font-size: 12px; font-weight: 500;
+            padding: 6px 12px; border-radius: 6px;
+            transition: all .15s;
+        }
+        .nav-btn:hover { color: #cbd5e1; background: rgba(255,255,255,.04); }
+        .nav-btn .nb-label { font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: #334155; display: block; }
+
+        svg { display: block; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+<div class="shell">
+
+    <!-- ── TOP NAV ──────────────────────────────────────── -->
+    <nav class="top-nav">
+        <a href="index.html#career">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m7-7l-7 7 7 7"/></svg>
+            Back to profile
+        </a>
+        <span class="role-badge">Role 01 / 07</span>
+        <a href="experience-transformation-officer.html">
+            Next role
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
+    </nav>
+
+    <!-- ── TITLE BAR ─────────────────────────────────────── -->
+    <div class="title-bar">
+        <div class="title-meta">
+            Pernod Ricard <span>·</span> Group HQ <span>·</span> Reporting to Group CIO <span>·</span> Since Nov. 2024
+        </div>
+        <h1 class="page-title d">Global Tech Data &amp; <em>Analytics Director</em></h1>
+    </div>
+
+    <!-- ── MAIN GRID ─────────────────────────────────────── -->
+    <div class="main-grid">
+
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+
+            <!-- Role Overview -->
+            <div class="overview-block">
+                <div class="block-label">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Role Overview
+                </div>
+                <p style="color:#cbd5e1; line-height:1.65; font-size:12.5px;">
+                    Promoted to lead as a director the global Data &amp; Analytics organization with <strong class="hi">three global chapters</strong> (Data Engineering, Data Architecture, BI &amp; Analytics) operating across <strong class="hi">eight global hubs</strong>. Mandate: industrialise delivery, capture value from a new vendor strategy, and accelerate the shift to <strong class="hi">data-product thinking</strong> with self-service BI as the default operating mode.
+                </p>
+            </div>
+
+            <!-- KPIs -->
+            <div class="kpi-block">
+                <div class="block-label green">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    Key Accomplishments · With Impact
+                </div>
+                <div class="kpi-grid">
+
+                    <div class="kpi-card">
+                        <div class="kpi-metric kpi-green" style="font-size:1.375rem;">€1.5M <span style="font-size:.875rem;color:#475569;">→</span> €1.9M</div>
+                        <div class="kpi-label">Internalisation Programme</div>
+                        <div class="kpi-desc">€1.5M investment projected to deliver €1.9M of recurring savings.</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-metric kpi-blue" style="font-size:1.875rem;">180+</div>
+                        <div class="kpi-label">Practitioners Led</div>
+                        <div class="kpi-desc">30+ internal experts and 150+ external resources across global hubs.</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-metric kpi-violet" style="font-size:1.875rem;">8</div>
+                        <div class="kpi-label">Global Hubs</div>
+                        <div class="kpi-desc">Canada · UK · Spain · Italy · India · France · Eastern Europe · China.</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-metric kpi-blue" style="font-size:1.875rem;">4</div>
+                        <div class="kpi-label">Pillar Strategy</div>
+                        <div class="kpi-desc">Community of Experts · People &amp; Comms · Tech Outlook · Ops Efficiency.</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-metric kpi-amber" style="font-size:1.875rem;">2</div>
+                        <div class="kpi-label">Strategic Partners</div>
+                        <div class="kpi-desc">SDG and EPAM selected after structured RFP — vendor strategy redesigned.</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-metric kpi-teal" style="font-size:1rem; line-height:1.3; padding-top:.1rem;">Standard Architecture &amp; Guidelines</div>
+                        <div class="kpi-label">Global Stack</div>
+                        <div class="kpi-desc">Snowflake · DBT · ADF · Power BI · GitHub — CODEX architecture enforced.</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL — 4 sections -->
+        <div class="right-panel">
+
+            <!-- TECHNOLOGY -->
+            <div class="detail-section ds-tech">
+                <div class="section-header">
+                    <div class="section-icon si-tech">
+                        <svg width="12" height="12" fill="none" stroke="#60a5fa" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2"/></svg>
+                    </div>
+                    <span class="section-label sl-tech">Technology</span>
+                </div>
+                <div class="pill-row">
+                    <span class="pill">Snowflake</span>
+                    <span class="pill">Databricks</span>
+                    <span class="pill">DBT</span>
+                    <span class="pill">Azure Data Factory</span>
+                    <span class="pill">Power BI</span>
+                    <span class="pill">GitHub</span>
+                    <span class="pill">JIRA</span>
+                </div>
+                <div class="bullets">
+                    <div class="bullet"><span class="bullet-dot bd-tech"></span><span>Agile delivery: JIRA backlog, 3-week sprints, full ceremonies</span></div>
+                    <div class="bullet"><span class="bullet-dot bd-tech"></span><span>Data platform &amp; product architecture — <strong class="hi">single source of truth</strong> + shared datasets</span></div>
+                </div>
+            </div>
+
+            <!-- BUSINESS SPECTRUM -->
+            <div class="detail-section ds-business">
+                <div class="section-header">
+                    <div class="section-icon si-business">
+                        <svg width="12" height="12" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <span class="section-label sl-business">Business Spectrum</span>
+                </div>
+                <div class="bullets">
+                    <div class="bullet"><span class="bullet-dot bd-business"></span><span>Group-wide D&amp;A capability serving <strong class="hi">brand, supply, finance and consumer</strong></span></div>
+                    <div class="bullet"><span class="bullet-dot bd-business"></span><span><strong class="hi">B2B operations + B2C consumer analytics</strong> in one platform</span></div>
+                    <div class="bullet"><span class="bullet-dot bd-business"></span><span>Self-service BI shift — from project delivery to <strong class="hi">data product</strong></span></div>
+                </div>
+            </div>
+
+            <!-- LEADERSHIP EVOLUTION -->
+            <div class="detail-section ds-leadership">
+                <div class="section-header">
+                    <div class="section-icon si-leadership">
+                        <svg width="12" height="12" fill="none" stroke="#34d399" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <span class="section-label sl-leadership">Leadership Evolution</span>
+                </div>
+                <div class="bullets">
+                    <div class="bullet"><span class="bullet-dot bd-leadership"></span><span>Direct reports: <strong class="hi">3 chapter leads</strong> + cross-hub leads</span></div>
+                    <div class="bullet"><span class="bullet-dot bd-leadership"></span><span>Total scope: <strong class="hi">30 internal + 150 external</strong> across 8 countries</span></div>
+                    <div class="bullet"><span class="bullet-dot bd-leadership"></span><span>Operates as peer to <strong class="hi">Group CIO leadership team</strong> and brand CDOs</span></div>
+                </div>
+            </div>
+
+            <!-- KEY STAKEHOLDERS -->
+            <div class="detail-section ds-stakeholders">
+                <div class="section-header">
+                    <div class="section-icon si-stakeholders">
+                        <svg width="12" height="12" fill="none" stroke="#fbbf24" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <span class="section-label sl-stakeholders">Key Stakeholders</span>
+                </div>
+                <div class="bullets">
+                    <div class="bullet"><span class="bullet-dot bd-stakeholders"></span><span><strong class="hi">Group CIO</strong> and IT exec committee</span></div>
+                    <div class="bullet"><span class="bullet-dot bd-stakeholders"></span><span><strong class="hi">Brand CFOs</strong> · Supply, Marketing &amp; Operations leadership</span></div>
+                    <div class="bullet"><span class="bullet-dot bd-stakeholders"></span><span>Strategic partners <strong class="hi">SDG</strong> and <strong class="hi">EPAM</strong></span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── BOTTOM NAV ────────────────────────────────────── -->
+    <footer class="bottom-nav">
+        <a href="index.html#career" class="nav-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m7-7l-7 7 7 7"/></svg>
+            <div><span class="nb-label">Back to</span> Full Profile</div>
+        </a>
+        <div style="font-size:11px;color:#1e2d4a;font-weight:500;letter-spacing:.05em;">GAUTHIER VAN WENT · EXECUTIVE PROFILE</div>
+        <a href="experience-transformation-officer.html" class="nav-btn">
+            <div style="text-align:right;"><span class="nb-label">Next role</span> Data Transformation Officer</div>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
+    </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauthier Van Went — Transformation & Data Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #070c18;
+            --navy-card: #0d1526;
+            --navy-border: #1e2d4a;
+            --blue: #3b82f6;
+            --blue-bright: #60a5fa;
+            --gold: #f59e0b;
+            --text: #f1f5f9;
+            --muted: #64748b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--navy);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .timeline-line {
+            background: linear-gradient(to bottom, #3b82f6, #7c3aed);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35), 0 0 20px rgba(59,130,246,0.08);
+        }
+
+        nav {
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 10px) scale(0.95); }
+        }
+
+        .blob-1 { animation: blob 9s infinite; }
+        .blob-2 { animation: blob 11s infinite 2s; }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #1e2d4a, transparent);
+        }
+
+        .tech-pill {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.22);
+            color: #93c5fd;
+            transition: all 0.2s ease;
+        }
+
+        .tech-pill:hover {
+            background: rgba(59, 130, 246, 0.18);
+            border-color: rgba(59, 130, 246, 0.45);
+        }
+
+        .sport-accent {
+            background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(251,191,36,0.04));
+            border-color: rgba(245,158,11,0.25) !important;
+        }
+
+        /* Stat card glow on hover */
+        .stat-card:hover {
+            border-color: rgba(59,130,246,0.25) !important;
+            background: rgba(59,130,246,0.04) !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─────────────────────────────────────────── -->
+<nav class="fixed top-0 w-full z-50" style="background:rgba(7,12,24,0.82); border-bottom:1px solid rgba(255,255,255,0.05);">
+    <div style="max-width:72rem; margin:0 auto; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between;">
+        <span></span>
+        <div style="display:flex; gap:2rem; font-size:0.875rem; color:#94a3b8;">
+            <a href="#about"  style="color:#94a3b8; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">About</a>
+            <a href="#career" style="color:#94a3b8; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">Career</a>
+            <a href="#competencies" style="color:#94a3b8; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">Competencies</a>
+            <a href="#ai"     style="color:#94a3b8; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">AI in Practice</a>
+            <a href="#sport"  style="color:#94a3b8; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'">Sport</a>
+            <a href="#contact" style="color:#60a5fa; text-decoration:none; font-weight:500;">Contact</a>
+        </div>
+    </div>
+</nav>
+
+
+<!-- ─── HERO ───────────────────────────────────────────────── -->
+<section class="hero-grid" style="min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding-top:5rem;">
+    <div class="blob-1" style="position:absolute; top:22%; left:22%; width:26rem; height:26rem; background:rgba(59,130,246,0.04); border-radius:9999px; filter:blur(80px); pointer-events:none;"></div>
+    <div class="blob-2" style="position:absolute; bottom:18%; right:18%; width:22rem; height:22rem; background:rgba(124,58,237,0.04); border-radius:9999px; filter:blur:80px; filter:blur(80px); pointer-events:none;"></div>
+
+    <div style="max-width:72rem; margin:0 auto; padding:5rem 1.5rem; width:100%;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+        <div>
+
+            <!-- Status pill -->
+            <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.375rem 0.875rem; border-radius:9999px; border:1px solid rgba(59,130,246,0.22); background:rgba(59,130,246,0.06); color:#93c5fd; font-size:0.8125rem; font-weight:500; margin-bottom:2rem;">
+                <span style="width:7px; height:7px; border-radius:9999px; background:#60a5fa; animation:pulse 2s infinite;"></span>
+                Available for Senior Leadership Roles — Stockholm, Sweden
+            </div>
+
+            <!-- Name -->
+            <h1 class="font-display" style="font-size:clamp(2.8rem,7vw,5rem); font-weight:700; color:white; line-height:1.08; margin:0 0 1.5rem;">
+                Gauthier<br>
+                <span class="gradient-text">Van Went</span>
+            </h1>
+
+            <!-- Tagline -->
+            <p style="font-size:clamp(1.1rem,2.5vw,1.35rem); color:#cbd5e1; line-height:1.65; margin:0 0 1rem; max-width:38rem;">
+                I lead transformation with <strong style="color:white; font-weight:600;">data and AI as the engines</strong> —<br>executive strategy, hands-on delivery, global scale.
+            </p>
+            <p style="font-size:1.0625rem; color:#64748b; margin:0 0 2.75rem; max-width:32rem; line-height:1.6;">
+                20 years building, leading, and scaling data & technology organisations at global scale.
+            </p>
+
+            <!-- CTAs -->
+            <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+                <a href="#contact" style="padding:0.8125rem 1.625rem; background:#2563eb; color:white; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem;" onmouseover="this.style.background='#3b82f6'; this.style.boxShadow='0 8px 24px rgba(59,130,246,0.3)'" onmouseout="this.style.background='#2563eb'; this.style.boxShadow='none'">
+                    Get in touch
+                </a>
+                <a href="#career" style="padding:0.8125rem 1.625rem; border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem;" onmouseover="this.style.borderColor='rgba(255,255,255,0.25)'; this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='#cbd5e1'">
+                    View experience →
+                </a>
+            </div>
+        </div>
+
+        <!-- Profile photo column -->
+        <div style="position:relative; display:flex; align-items:center; justify-content:center;">
+            <div style="position:relative; width:100%; max-width:400px; margin:0 auto;">
+                <img src="profile.jpg" alt="Gauthier Van Went" style="width:100%; border-radius:1.75rem; object-fit:cover; object-position:center 12%; aspect-ratio:3/4; filter:grayscale(20%) brightness(0.88);">
+                <div style="position:absolute; inset:0; border-radius:1.75rem; background:linear-gradient(to right, rgba(7,12,24,0.75) 0%, rgba(7,12,24,0) 38%), linear-gradient(to top, rgba(7,12,24,0.65) 0%, rgba(7,12,24,0) 28%);"></div>
+                <div style="position:absolute; bottom:-1.75rem; left:10%; right:10%; height:3.5rem; background:rgba(59,130,246,0.1); filter:blur(30px); border-radius:9999px;"></div>
+            </div>
+        </div>
+
+        </div><!-- end hero 2-col grid -->
+
+        <!-- Stats strip -->
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:4.5rem;">
+            <div class="stat-card" style="padding:1.125rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.015); text-align:center; transition:all 0.2s ease; cursor:default;">
+                <div class="font-display counter" data-target="20" style="font-size:2rem; font-weight:700; color:white;">0</div>
+                <div style="font-size:0.6875rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; margin-top:0.25rem;">Years experience</div>
+            </div>
+            <div class="stat-card" style="padding:1.125rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.015); text-align:center; transition:all 0.2s ease; cursor:default;">
+                <div class="font-display counter" data-target="180" style="font-size:2rem; font-weight:700; color:white;">0</div>
+                <div style="font-size:0.6875rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; margin-top:0.25rem;">People led</div>
+            </div>
+            <div class="stat-card" style="padding:1.125rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.015); text-align:center; transition:all 0.2s ease; cursor:default;">
+                <div class="font-display counter" data-target="117" style="font-size:2rem; font-weight:700; color:white;">0</div>
+                <div style="font-size:0.6875rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; margin-top:0.25rem;">Projects managed</div>
+            </div>
+            <div class="stat-card" style="padding:1.125rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.015); text-align:center; transition:all 0.2s ease; cursor:default;">
+                <div class="font-display" style="font-size:2rem; font-weight:700; color:white;">3</div>
+                <div style="font-size:0.6875rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; margin-top:0.25rem;">Languages</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ─── ABOUT ──────────────────────────────────────────────── -->
+<section id="about" style="padding:6rem 0;">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4.5rem; align-items:start;">
+
+            <div class="fade-in">
+                <span style="color:#60a5fa; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.12em;">About</span>
+                <h2 class="font-display" style="font-size:clamp(1.75rem,4vw,2.5rem); font-weight:700; color:white; line-height:1.2; margin:0.75rem 0 1.5rem;">Transformation is a people game,<br>with technology as the enabler.</h2>
+                <p style="color:#94a3b8; line-height:1.75; margin:0 0 1.25rem; font-size:0.9375rem;">
+                    Transformation is the norm — what separates success from failure is leadership. I bring a clear <strong style="color:#e2e8f0;">What and Why</strong> from day one, combine strategy with disciplined execution, and treat change management as the critical path, not an afterthought.
+                </p>
+                <p style="color:#94a3b8; line-height:1.75; margin:0; font-size:0.9375rem;">
+                    I operate at CEO/CFO level — speaking the language of business outcomes, not IT deliverables. My French–Swedish background gives me a unique ability to bridge cultures and navigate both continental and Nordic ways of working with equal fluency.
+                </p>
+            </div>
+
+            <div class="fade-in" style="display:flex; flex-direction:column; gap:1rem;">
+
+                <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default;">
+                    <div style="display:flex; align-items:flex-start; gap:1rem;">
+                        <div style="width:2.5rem; height:2.5rem; border-radius:0.625rem; background:rgba(59,130,246,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                            <svg width="20" height="20" fill="none" stroke="#60a5fa" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 style="font-weight:600; color:white; margin:0 0 0.375rem; font-size:0.9375rem;">Strategy + Execution — not one or the other</h3>
+                            <p style="font-size:0.8125rem; color:#64748b; margin:0; line-height:1.6;">I design the operating model and deliver it. From SteerCo design to JIRA backlog, from board presentation to sprint ceremony.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default;">
+                    <div style="display:flex; align-items:flex-start; gap:1rem;">
+                        <div style="width:2.5rem; height:2.5rem; border-radius:0.625rem; background:rgba(124,58,237,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                            <svg width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 style="font-weight:600; color:white; margin:0 0 0.375rem; font-size:0.9375rem;">French–Swedish cultural bridge</h3>
+                            <p style="font-size:0.8125rem; color:#64748b; margin:0; line-height:1.6;">15+ years in Sweden, dual nationality, Swedish at operational level. Nordic flat structures and French corporate hierarchies — I navigate both.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default;">
+                    <div style="display:flex; align-items:flex-start; gap:1rem;">
+                        <div style="width:2.5rem; height:2.5rem; border-radius:0.625rem; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                            <svg width="20" height="20" fill="none" stroke="#34d399" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div>
+                            <h3 style="font-weight:600; color:white; margin:0 0 0.375rem; font-size:0.9375rem;">Data as business accelerator, and a mandatory foundation for AI</h3>
+                            <p style="font-size:0.8125rem; color:#64748b; margin:0; line-height:1.6;">B2B + B2C data fluency. I align data strategy with product organisation and speak Snowflake to engineers and ROI to CFOs.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ─── CAREER ─────────────────────────────────────────────── -->
+<section id="career" style="padding:6rem 0; scroll-margin-top:64px;">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem;">
+
+        <div class="fade-in" style="text-align:center; margin-bottom:4rem;">
+            <span style="color:#60a5fa; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.12em;">Experience</span>
+            <h2 class="font-display" style="font-size:clamp(1.75rem,4vw,2.5rem); font-weight:700; color:white; margin:0.75rem 0 0;">20 years of progressive impact</h2>
+        </div>
+
+        <!-- Timeline -->
+        <div style="position:relative;">
+            <!-- Central line (desktop) -->
+            <div class="timeline-line" style="position:absolute; left:50%; top:0; bottom:0; width:1px; transform:translateX(-0.5px);"></div>
+
+            <div style="display:flex; flex-direction:column; gap:2.5rem;">
+
+                <!-- Role 1 -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#60a5fa; font-size:0.8125rem; font-weight:500;">2023 – 2024</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:white; margin:0.375rem 0 0.25rem; line-height:1.25;">Global Tech Data &amp; Analytics Director</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">Pernod Ricard</div>
+                    </div>
+                    <!-- Dot -->
+                    <div style="position:absolute; left:50%; top:0.5rem; width:14px; height:14px; border-radius:9999px; background:#3b82f6; transform:translateX(-7px); box-shadow:0 0 0 4px #070c18, 0 0 12px rgba(59,130,246,0.5);"></div>
+                    <div style="padding-left:3rem;">
+                        <a href="experience-analytics-director.html" style="text-decoration:none; display:block;">
+                        <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:pointer;">
+                            <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0 0 1rem;">Led 3 global chapters: Data Engineering, Data Architecture, BI & Analytics. Managed <strong style="color:#e2e8f0;">30+ internal and 150+ external</strong> contributors across Canada, UK, Spain, India, China, Eastern Europe.</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(16,185,129,0.08); color:#34d399; border:1px solid rgba(16,185,129,0.2);">1.5M€ → 1.9M€ savings</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(59,130,246,0.08); color:#93c5fd; border:1px solid rgba(59,130,246,0.2);">180+ person org</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(100,116,139,0.1); color:#94a3b8; border:1px solid rgba(100,116,139,0.2);">Snowflake · DBT · Azure · Power BI</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.375rem; font-size:0.75rem; color:#3b82f6; font-weight:500;">
+                                View full experience
+                                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#a78bfa; font-size:0.8125rem; font-weight:500;">2023 – 2024</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:white; margin:0.375rem 0 0.25rem; line-height:1.25;">Global Tech Data Transformation Officer</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">Pernod Ricard</div>
+                    </div>
+                    <div style="position:absolute; left:50%; top:0.5rem; width:14px; height:14px; border-radius:9999px; background:#7c3aed; transform:translateX(-7px); box-shadow:0 0 0 4px #070c18, 0 0 12px rgba(124,58,237,0.5);"></div>
+                    <div style="padding-left:3rem;">
+                        <a href="experience-transformation-officer.html" style="text-decoration:none; display:block;">
+                        <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:pointer;">
+                            <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0 0 1rem;">Led the transformation of a <strong style="color:#e2e8f0;">120-person D&A organisation</strong> as part of a 600+ global IT restructuring. Designed the full target operating model and executed the organisational transition end-to-end.</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(124,58,237,0.08); color:#c4b5fd; border:1px solid rgba(124,58,237,0.2);">600+ global IT transformation</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(59,130,246,0.08); color:#93c5fd; border:1px solid rgba(59,130,246,0.2);">Promoted post-transformation</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.375rem; font-size:0.75rem; color:#3b82f6; font-weight:500;">View full experience <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#60a5fa; font-size:0.8125rem; font-weight:500;">2021 – 2024</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:white; margin:0.375rem 0 0.25rem; line-height:1.25;">Transformation Director</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">The Absolut Group</div>
+                    </div>
+                    <div style="position:absolute; left:50%; top:0.5rem; width:14px; height:14px; border-radius:9999px; background:#3b82f6; transform:translateX(-7px); box-shadow:0 0 0 4px #070c18, 0 0 12px rgba(59,130,246,0.4);"></div>
+                    <div style="padding-left:3rem;">
+                        <a href="experience-transformation-director.html" style="text-decoration:none; display:block;">
+                        <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:pointer;">
+                            <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0 0 1rem;">Built the <strong style="color:#e2e8f0;">TAG Management System</strong> from scratch for a <strong style="color:#e2e8f0;">500-person organisation</strong> — governance framework, SteerCo design, 5-stage project lifecycle, and Gold/Silver/Bronze prioritisation model. Full company adoption with <strong style="color:#e2e8f0;">direct CEO/CFO sponsorship</strong>.</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(16,185,129,0.08); color:#34d399; border:1px solid rgba(16,185,129,0.2);">117 projects managed</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(245,158,11,0.08); color:#fbbf24; border:1px solid rgba(245,158,11,0.2);">CEO/CFO direct sponsorship</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.375rem; font-size:0.75rem; color:#3b82f6; font-weight:500;">View full experience <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#a78bfa; font-size:0.8125rem; font-weight:500;">2020 – 2022</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:white; margin:0.375rem 0 0.25rem; line-height:1.25;">Regional Head of Data</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">Pernod Ricard Brand Companies</div>
+                    </div>
+                    <div style="position:absolute; left:50%; top:0.5rem; width:14px; height:14px; border-radius:9999px; background:#7c3aed; transform:translateX(-7px); box-shadow:0 0 0 4px #070c18;"></div>
+                    <div style="padding-left:3rem;">
+                        <a href="experience-regional-head-data.html" style="text-decoration:none; display:block;">
+                        <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:pointer;">
+                            <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0 0 1rem;">Built the <strong style="color:#e2e8f0;">BI & Data function</strong> across <strong style="color:#e2e8f0;">Absolut, Chivas, and Irish Distillers</strong>. Led <strong style="color:#e2e8f0;">Azure cloud migration</strong>, consolidated a fragmented BI landscape, introduced DevOps pipelines, data governance, and self-service BI.</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(59,130,246,0.08); color:#93c5fd; border:1px solid rgba(59,130,246,0.2);">3 brand companies unified</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(16,185,129,0.08); color:#34d399; border:1px solid rgba(16,185,129,0.2);">Azure cloud migration</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(100,116,139,0.1); color:#94a3b8; border:1px solid rgba(100,116,139,0.2);">Self-service BI · Data governance</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.375rem; font-size:0.75rem; color:#3b82f6; font-weight:500;">View full experience <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Role 5: IT Business Relationship Manager -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#60a5fa; font-size:0.8125rem; font-weight:500;">2016 – 2022</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:white; margin:0.375rem 0 0.25rem; line-height:1.25;">IT Business Relationship Manager</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">The Absolut Group</div>
+                    </div>
+                    <div style="position:absolute; left:50%; top:0.5rem; width:14px; height:14px; border-radius:9999px; background:#3b82f6; transform:translateX(-7px); box-shadow:0 0 0 4px #070c18, 0 0 12px rgba(59,130,246,0.4);"></div>
+                    <div style="padding-left:3rem;">
+                        <a href="experience-brm.html" style="text-decoration:none; display:block;">
+                        <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:pointer;">
+                            <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0 0 1rem;">Transformed IT from a <strong style="color:#e2e8f0;">service provider into a strategic partner</strong> for the business. Established <strong style="color:#e2e8f0;">executive-level IT governance</strong> and built a <strong style="color:#e2e8f0;">structured demand management system</strong> to prioritise and align IT investment with business value.</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(59,130,246,0.08); color:#93c5fd; border:1px solid rgba(59,130,246,0.2);">IT → Strategic partner</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(245,158,11,0.08); color:#fbbf24; border:1px solid rgba(245,158,11,0.2);">Executive IT governance</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(100,116,139,0.1); color:#94a3b8; border:1px solid rgba(100,116,139,0.2);">Demand management system</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.375rem; font-size:0.75rem; color:#3b82f6; font-weight:500;">View full experience <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Role 6: BI Project Manager -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#a78bfa; font-size:0.8125rem; font-weight:500;">2011 – 2016</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:white; margin:0.375rem 0 0.25rem; line-height:1.25;">BI Project Manager</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">Pernod Ricard</div>
+                    </div>
+                    <div style="position:absolute; left:50%; top:0.5rem; width:14px; height:14px; border-radius:9999px; background:#7c3aed; transform:translateX(-7px); box-shadow:0 0 0 4px #070c18;"></div>
+                    <div style="padding-left:3rem;">
+                        <a href="experience-bi-project-manager.html" style="text-decoration:none; display:block;">
+                        <div class="card-hover" style="padding:1.375rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:pointer;">
+                            <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0 0 1rem;">Led <strong style="color:#e2e8f0;">end-to-end BI project delivery</strong> across brand and group functions — scoping, design, build, deployment and adoption. Sole point of accountability for business sponsors across the full lifecycle.</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(124,58,237,0.08); color:#c4b5fd; border:1px solid rgba(124,58,237,0.2);">Multi-year BI portfolio</span>
+                                <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:9999px; background:rgba(100,116,139,0.1); color:#94a3b8; border:1px solid rgba(100,116,139,0.2);">Vendor & cost control</span>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:0.375rem; font-size:0.75rem; color:#3b82f6; font-weight:500;">View full experience <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Earlier career -->
+                <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; position:relative;">
+                    <div style="text-align:right; padding-right:3rem; padding-top:0.375rem;">
+                        <div style="color:#475569; font-size:0.8125rem; font-weight:500;">2005 – 2011</div>
+                        <h3 class="font-display" style="font-size:1.1875rem; font-weight:700; color:#94a3b8; margin:0.375rem 0 0.25rem; line-height:1.25;">Earlier Career</h3>
+                        <div style="color:#64748b; font-size:0.8125rem;">CGI / Logica</div>
+                    </div>
+                    <div style="position:absolute; left:50%; top:0.5rem; width:12px; height:12px; border-radius:9999px; background:#1e2d4a; border:2px solid #3b82f6; transform:translateX(-6px); box-shadow:0 0 0 4px #070c18;"></div>
+                    <div style="padding-left:3rem;">
+                        <div style="padding:1.25rem; border-radius:0.875rem; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.01);">
+                            <div style="display:flex; justify-content:space-between; font-size:0.8125rem; color:#64748b;"><span>BI Consultant — CGI / Logica</span><span style="color:#475569; flex-shrink:0; margin-left:1rem;">2005–2011</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ─── COMPETENCIES ───────────────────────────────────────── -->
+<section id="competencies" style="padding:6rem 0; background:rgba(255,255,255,0.008);">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem;">
+
+        <div class="fade-in" style="text-align:center; margin-bottom:4rem;">
+            <span style="color:#60a5fa; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.12em;">Competencies</span>
+            <h2 class="font-display" style="font-size:clamp(1.75rem,4vw,2.5rem); font-weight:700; color:white; margin:0.75rem 0 0;">Three pillars, one leader</h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
+
+            <div class="fade-in card-hover" style="padding:1.875rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default;">
+                <div style="width:3rem; height:3rem; border-radius:0.75rem; background:rgba(59,130,246,0.12); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+                    <svg width="24" height="24" fill="none" stroke="#60a5fa" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <h3 class="font-display" style="font-size:1.0625rem; font-weight:700; color:white; margin:0 0 1rem;">Transformation &amp; Governance</h3>
+                <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.625rem;">
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#3b82f6; flex-shrink:0;"></span>Enterprise transformation at scale</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#3b82f6; flex-shrink:0;"></span>Operating model design &amp; implementation</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#3b82f6; flex-shrink:0;"></span>PMO &amp; portfolio leadership</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#3b82f6; flex-shrink:0;"></span>Change management</li>
+                </ul>
+            </div>
+
+            <div class="fade-in card-hover" style="padding:1.875rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default; transition-delay:0.1s;">
+                <div style="width:3rem; height:3rem; border-radius:0.75rem; background:rgba(124,58,237,0.12); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+                    <svg width="24" height="24" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2"/></svg>
+                </div>
+                <h3 class="font-display" style="font-size:1.0625rem; font-weight:700; color:white; margin:0 0 1rem;">Data &amp; Digital</h3>
+                <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.625rem;">
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#7c3aed; flex-shrink:0;"></span>Data strategy &amp; modern data platforms</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#7c3aed; flex-shrink:0;"></span>AI enablement &amp; governance</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#7c3aed; flex-shrink:0;"></span>Self-service BI &amp; analytics</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#7c3aed; flex-shrink:0;"></span>IoT &amp; edge data strategy</li>
+                </ul>
+            </div>
+
+            <div class="fade-in card-hover" style="padding:1.875rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default; transition-delay:0.2s;">
+                <div style="width:3rem; height:3rem; border-radius:0.75rem; background:rgba(16,185,129,0.12); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+                    <svg width="24" height="24" fill="none" stroke="#34d399" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                </div>
+                <h3 class="font-display" style="font-size:1.0625rem; font-weight:700; color:white; margin:0 0 1rem;">Leadership</h3>
+                <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.625rem;">
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#10b981; flex-shrink:0;"></span>C-suite &amp; board engagement</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#10b981; flex-shrink:0;"></span>Global team leadership (180+)</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#10b981; flex-shrink:0;"></span>Stakeholder alignment</li>
+                    <li style="display:flex; align-items:center; gap:0.625rem; font-size:0.8125rem; color:#94a3b8;"><span style="width:5px; height:5px; border-radius:9999px; background:#10b981; flex-shrink:0;"></span>Cultural bridge (FR / SE)</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ─── AI IN PRACTICE ─────────────────────────────────────── -->
+<section id="ai" style="padding:6rem 0;">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem;">
+
+        <div class="fade-in" style="text-align:center; margin-bottom:4rem;">
+            <span style="color:#60a5fa; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.12em;">AI in Practice</span>
+            <h2 class="font-display" style="font-size:clamp(1.75rem,4vw,2.5rem); font-weight:700; color:white; margin:0.75rem 0 0.75rem;">I don't theorise about AI. I deploy it.</h2>
+            <p style="color:#64748b; max-width:38rem; margin:0 auto; font-size:0.9375rem; line-height:1.7;">As a transformation leader targeting CDO/CIO roles, credibility requires hands-on practice. Here is what I have built.</p>
+        </div>
+
+        <!-- Tool pills -->
+        <div class="fade-in" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.75rem; margin-bottom:3.5rem;">
+            <span class="tech-pill" style="padding:0.5rem 1rem; border-radius:9999px; font-size:0.8125rem; font-weight:500;">Claude Code</span>
+            <span class="tech-pill" style="padding:0.5rem 1rem; border-radius:9999px; font-size:0.8125rem; font-weight:500;">Claude Cowork</span>
+            <span class="tech-pill" style="padding:0.5rem 1rem; border-radius:9999px; font-size:0.8125rem; font-weight:500;">ChatGPT</span>
+            <span class="tech-pill" style="padding:0.5rem 1rem; border-radius:9999px; font-size:0.8125rem; font-weight:500;">GitHub Copilot</span>
+            <span class="tech-pill" style="padding:0.5rem 1rem; border-radius:9999px; font-size:0.8125rem; font-weight:500;">n8n</span>
+        </div>
+
+        <!-- Project cards -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+
+            <!-- n8n project -->
+            <div class="fade-in card-hover" style="padding:1.875rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default;">
+                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+                    <div style="width:3.25rem; height:3.25rem; border-radius:0.875rem; background:#1a1008; border:1px solid rgba(251,146,60,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <svg width="22" height="22" fill="none" stroke="#fb923c" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-size:0.6875rem; color:#fb923c; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.3rem;">N8N Automation</div>
+                        <h3 class="font-display" style="font-size:1.0625rem; font-weight:700; color:white; margin:0; line-height:1.2;">AI Voice Assistant — Calendar &amp; Mailbox</h3>
+                    </div>
+                </div>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.75; margin:0 0 1rem;">
+                    An AI assistant accessible via <strong style="color:#e2e8f0;">voice message on Telegram</strong>. Send an audio note, the pipeline transcribes it, processes the intent, and returns structured information from calendar and mailbox — hands-free, mobile-first.
+                </p>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.75; margin:0 0 1.25rem;">
+                    The agent generates a <strong style="color:#e2e8f0;">weekly briefing</strong> every Monday with all meetings and tasks, and a <strong style="color:#e2e8f0;">daily digest</strong> each morning — no manual prep, always in context.
+                </p>
+                <div style="padding-top:1rem; border-top:1px solid rgba(255,255,255,0.05);">
+                    <div style="font-size:0.6875rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.625rem;">Key technical challenges</div>
+                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Telegram bot integration</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Audio → text transcription</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Calendar API</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Automated scheduling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Claude Cowork project -->
+            <div class="fade-in card-hover" style="padding:1.875rem; border-radius:1rem; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.018); cursor:default;">
+                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+                    <div style="width:3.25rem; height:3.25rem; border-radius:0.875rem; background:#080e1a; border:1px solid rgba(96,165,250,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <svg width="22" height="22" fill="none" stroke="#60a5fa" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-size:0.6875rem; color:#60a5fa; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.3rem;">Claude Cowork Agent</div>
+                        <h3 class="font-display" style="font-size:1.0625rem; font-weight:700; color:white; margin:0; line-height:1.2;">Intelligent Job Search Pipeline</h3>
+                    </div>
+                </div>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.75; margin:0 0 1rem;">
+                    An agent that searches LinkedIn for new opportunities, scores each role against a detailed executive profile, and returns a structured fit analysis — including <strong style="color:#e2e8f0;">network intelligence</strong> surfaced from existing LinkedIn connections.
+                </p>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.75; margin:0 0 1.25rem;">
+                    The agent also monitors a <strong style="color:#e2e8f0;">Google Drive tracking file</strong>, reads the live action plan, and delivers daily reminders of open items — so nothing slips through.
+                </p>
+                <div style="padding-top:1rem; border-top:1px solid rgba(255,255,255,0.05);">
+                    <div style="font-size:0.6875rem; color:#475569; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.625rem;">Capabilities</div>
+                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">LinkedIn opportunity search</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Role-to-profile matching</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Network intelligence</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Google Drive integration</span>
+                        <span style="font-size:0.6875rem; padding:0.25rem 0.625rem; border-radius:0.25rem; background:rgba(255,255,255,0.04); color:#94a3b8;">Daily action reminders</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Meta callout -->
+        <div class="fade-in" style="padding:1.375rem 1.75rem; border-radius:0.875rem; border:1px solid rgba(212,137,76,0.25); background:rgba(212,137,76,0.04); text-align:center;">
+            <!-- Claude Code badge -->
+            <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.375rem 0.875rem; border-radius:0.5rem; background:rgba(212,137,76,0.12); border:1px solid rgba(212,137,76,0.3); margin-bottom:0.875rem;">
+                <!-- Terminal icon -->
+                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#d4894c" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <span style="font-family:'Space Grotesk',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#d4894c;">Claude Code</span>
+            </div>
+            <p style="font-size:0.8125rem; color:#94a3b8; margin:0; line-height:1.65;">
+                <span style="color:#e2e8f0; font-weight:500;">This website itself</span> was built using Claude Code — from a structured profile document to production-ready HTML, in a single working session. The build process is part of the story.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ─── SPORT ──────────────────────────────────────────────── -->
+<section id="sport" style="padding:6rem 0;">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem;">
+        <!-- Top: text + photos -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; margin-bottom:2.5rem;">
+
+            <div class="fade-in">
+                <span style="color:#f59e0b; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.12em;">Beyond Work</span>
+                <h2 class="font-display" style="font-size:clamp(1.75rem,4vw,2.5rem); font-weight:700; color:white; line-height:1.2; margin:0.75rem 0 1.5rem;">Captain.<br>Not just a title.</h2>
+                <p style="color:#94a3b8; line-height:1.75; margin:0 0 1.25rem; font-size:0.9375rem;">
+                    In 2024 I captained the <strong style="color:#e2e8f0;">Swedish national Touch team</strong> at the World Cup in Nottingham, England — representing a country I chose to call home, in a sport built entirely on teamwork, trust, and split-second decision-making under pressure.
+                </p>
+                <p style="color:#94a3b8; line-height:1.75; margin:0 0 2rem; font-size:0.9375rem;">
+                    The parallels to leading a transformation are not metaphorical. They are the same skills: reading the field in real time, building a team culture that performs when it counts, and making the call when others hesitate.
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+                    <span class="sport-accent" style="padding:0.5rem 1rem; border-radius:0.5rem; border:1px solid; font-size:0.8125rem; color:#fbbf24; font-weight:500;">World Cup 2024 · Nottingham</span>
+                    <span class="sport-accent" style="padding:0.5rem 1rem; border-radius:0.5rem; border:1px solid; font-size:0.8125rem; color:#fbbf24; font-weight:500;">Sweden National Team</span>
+                    <span class="sport-accent" style="padding:0.5rem 1rem; border-radius:0.5rem; border:1px solid; font-size:0.8125rem; color:#fbbf24; font-weight:500;">Team Captain</span>
+                </div>
+            </div>
+
+            <!-- Team photo -->
+            <div class="fade-in">
+                <div style="border-radius:1rem; overflow:hidden; border:1px solid rgba(245,158,11,0.15);">
+                    <img src="touch-team.jpg" alt="Sweden Men's 40s Touch Rugby Team 2024" style="width:100%; display:block;">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom: 3 insight cards -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+            <div class="fade-in sport-accent" style="padding:1.375rem; border-radius:0.875rem; border:1px solid;">
+                <div style="color:#f59e0b; font-weight:600; font-size:0.9375rem; margin-bottom:0.5rem;">On the field</div>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0;">Touch requires constant communication, dynamic role adjustment, and leading by example under fatigue. Every move is a collective decision — no room for hierarchy, only trust.</p>
+            </div>
+            <div class="fade-in sport-accent" style="padding:1.375rem; border-radius:0.875rem; border:1px solid;">
+                <div style="color:#f59e0b; font-weight:600; font-size:0.9375rem; margin-bottom:0.5rem;">In the organisation</div>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0;">Reading the situation, adjusting the plan mid-flight, keeping the team aligned when conditions change — these are the same instincts I bring to every transformation mandate.</p>
+            </div>
+            <div class="fade-in sport-accent" style="padding:1.375rem; border-radius:0.875rem; border:1px solid;">
+                <div style="color:#f59e0b; font-weight:600; font-size:0.9375rem; margin-bottom:0.5rem;">The commitment</div>
+                <p style="font-size:0.8125rem; color:#94a3b8; line-height:1.7; margin:0;">International sport demands discipline, sacrifice, and long-term thinking. Those aren't soft skills — they are the foundation of every large-scale programme I have delivered.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ─── CONTACT ────────────────────────────────────────────── -->
+<section id="contact" style="padding:6rem 0;">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem;">
+        <div style="max-width:36rem; margin:0 auto; text-align:center;" class="fade-in">
+            <span style="color:#60a5fa; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.12em;">Contact</span>
+            <h2 class="font-display" style="font-size:clamp(1.75rem,4vw,2.5rem); font-weight:700; color:white; margin:0.75rem 0 1.25rem;">Let's talk transformation.</h2>
+            <p style="color:#64748b; line-height:1.75; margin:0 0 2.5rem; font-size:0.9375rem;">
+                I'm selectively exploring senior leadership roles in Sweden — CDO, CIO, or Transformation Director. If you're building something significant and need someone who can both design and deliver, I'd like to hear about it.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:1rem; align-items:center;">
+                <a href="mailto:gauthier.vanwent@outlook.com" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.9375rem 2rem; background:#2563eb; color:white; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem; width:100%; max-width:22rem;" onmouseover="this.style.background='#3b82f6'; this.style.boxShadow='0 8px 24px rgba(59,130,246,0.3)'" onmouseout="this.style.background='#2563eb'; this.style.boxShadow='none'">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    gauthier.vanwent@outlook.com
+                </a>
+                <a href="https://www.linkedin.com/in/gauthiervanwent" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.9375rem 2rem; border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem; width:100%; max-width:22rem;" onmouseover="this.style.borderColor='rgba(255,255,255,0.25)'; this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='#cbd5e1'">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn Profile
+                </a>
+            </div>
+            <p style="color:#334155; font-size:0.8125rem; margin-top:1.75rem;">Stockholm · +46 70 943 22 63</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─── FOOTER ─────────────────────────────────────────────── -->
+<footer style="padding:2rem 0; border-top:1px solid rgba(255,255,255,0.04);">
+    <div style="max-width:72rem; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; font-size:0.8125rem; color:#334155;">
+        <span>Gauthier Van Went — Stockholm, Sweden</span>
+        <span>Built with Claude Code</span>
+    </div>
+</footer>
+
+
+<!-- ─── SCRIPTS ────────────────────────────────────────────── -->
+<script>
+    // Scroll-triggered fade-ins
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Animated number counters
+    function animateCounter(el, target, duration) {
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = Math.floor(current) + (target >= 100 ? '+' : '');
+            if (current >= target) clearInterval(timer);
+        }, 16);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target, parseInt(entry.target.dataset.target), 1400);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
