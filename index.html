@@ -105,6 +105,21 @@
             border-color: rgba(245,158,11,0.25) !important;
         }
 
+        /* ── HERO LAYOUT ── */
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "pill  photo"
+                "name  photo"
+                "body  photo";
+            column-gap: 4rem;
+        }
+        .hero-pill      { grid-area: pill; align-self: end; }
+        .hero-photo-col { grid-area: photo; align-self: center; }
+        .hero-name      { grid-area: name; }
+        .hero-body      { grid-area: body; }
+
         /* ── MOBILE MENU ── */
         .hamburger {
             display: none;
@@ -152,22 +167,13 @@
             /* All content containers: tighter horizontal padding */
             div[style*="max-width:72rem"] { padding-left: 1rem !important; padding-right: 1rem !important; }
 
-            /* Hero: keep 2-col, narrow photo column */
-            div[style*="gap:4rem; align-items:center"] {
-                grid-template-columns: 1fr 88px !important;
-                gap: 1rem !important;
-                align-items: flex-start !important;
-            }
-            /* Profile photo: small rounded portrait next to name */
-            div:has(> img[src="profile.jpg"]) {
-                max-width: 88px !important;
-                margin: 0.375rem 0 0 !important;
-            }
-            div:has(> img[src="profile.jpg"]) img {
-                border-radius: 0.875rem !important;
-                aspect-ratio: 3/4 !important;
-                object-position: center 10% !important;
-            }
+            /* Hero: flex column, pill → photo → name → body */
+            .hero-layout { display: flex !important; flex-direction: column; }
+            .hero-pill      { order: 1; margin-bottom: 1.25rem; }
+            .hero-photo-col { order: 2; margin-bottom: 1.5rem; width: 100%; }
+            .hero-name      { order: 3; font-size: clamp(2.4rem,10vw,3rem) !important; margin-bottom: 0.875rem !important; }
+            .hero-body      { order: 4; }
+            .hero-photo-col img { border-radius: 1rem !important; aspect-ratio: 4/3 !important; object-position: center 8% !important; }
 
             /* Stats: 2×2 grid */
             div[style*="repeat(4,1fr)"] {
@@ -267,50 +273,48 @@
     <div class="blob-2" style="position:absolute; bottom:18%; right:18%; width:22rem; height:22rem; background:rgba(124,58,237,0.04); border-radius:9999px; filter:blur:80px; filter:blur(80px); pointer-events:none;"></div>
 
     <div style="max-width:72rem; margin:0 auto; padding:5rem 1.5rem; width:100%;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
-        <div>
+        <div class="hero-layout">
 
             <!-- Status pill -->
-            <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.375rem 0.875rem; border-radius:9999px; border:1px solid rgba(59,130,246,0.22); background:rgba(59,130,246,0.06); color:#93c5fd; font-size:0.8125rem; font-weight:500; margin-bottom:2rem;">
+            <div class="hero-pill" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.375rem 0.875rem; border-radius:9999px; border:1px solid rgba(59,130,246,0.22); background:rgba(59,130,246,0.06); color:#93c5fd; font-size:0.8125rem; font-weight:500; margin-bottom:1.5rem;">
                 <span style="width:7px; height:7px; border-radius:9999px; background:#60a5fa; animation:pulse 2s infinite;"></span>
                 Available for Senior Leadership Roles — Stockholm, Sweden
             </div>
 
+            <!-- Profile photo -->
+            <div class="hero-photo-col" style="position:relative; display:flex; align-items:center; justify-content:center;">
+                <div style="position:relative; width:100%; max-width:400px; margin:0 auto;">
+                    <img src="profile.jpg" alt="Gauthier Van Went" style="width:100%; border-radius:1.75rem; object-fit:cover; object-position:center 12%; aspect-ratio:3/4; filter:grayscale(20%) brightness(0.88);">
+                    <div style="position:absolute; inset:0; border-radius:1.75rem; background:linear-gradient(to right, rgba(7,12,24,0.75) 0%, rgba(7,12,24,0) 38%), linear-gradient(to top, rgba(7,12,24,0.65) 0%, rgba(7,12,24,0) 28%);"></div>
+                    <div style="position:absolute; bottom:-1.75rem; left:10%; right:10%; height:3.5rem; background:rgba(59,130,246,0.1); filter:blur(30px); border-radius:9999px;"></div>
+                </div>
+            </div>
+
             <!-- Name -->
-            <h1 class="font-display" style="font-size:clamp(2.8rem,7vw,5rem); font-weight:700; color:white; line-height:1.08; margin:0 0 1.5rem;">
+            <h1 class="hero-name font-display" style="font-size:clamp(2.8rem,7vw,5rem); font-weight:700; color:white; line-height:1.08; margin:0 0 1.5rem;">
                 Gauthier<br>
                 <span class="gradient-text">Van Went</span>
             </h1>
 
-            <!-- Tagline -->
-            <p style="font-size:clamp(1.1rem,2.5vw,1.35rem); color:#cbd5e1; line-height:1.65; margin:0 0 1rem; max-width:38rem;">
-                I lead transformation with <strong style="color:white; font-weight:600;">data and AI as the engines</strong> —<br>executive strategy, hands-on delivery, global scale.
-            </p>
-            <p style="font-size:1.0625rem; color:#64748b; margin:0 0 2.75rem; max-width:32rem; line-height:1.6;">
-                20 years building, leading, and scaling data & technology organisations at global scale.
-            </p>
-
-            <!-- CTAs -->
-            <div style="display:flex; flex-wrap:wrap; gap:1rem;">
-                <a href="#contact" style="padding:0.8125rem 1.625rem; background:#2563eb; color:white; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem;" onmouseover="this.style.background='#3b82f6'; this.style.boxShadow='0 8px 24px rgba(59,130,246,0.3)'" onmouseout="this.style.background='#2563eb'; this.style.boxShadow='none'">
-                    Get in touch
-                </a>
-                <a href="#career" style="padding:0.8125rem 1.625rem; border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem;" onmouseover="this.style.borderColor='rgba(255,255,255,0.25)'; this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='#cbd5e1'">
-                    View experience →
-                </a>
+            <!-- Tagline + desc + CTAs -->
+            <div class="hero-body">
+                <p style="font-size:clamp(1.1rem,2.5vw,1.35rem); color:#cbd5e1; line-height:1.65; margin:0 0 1rem; max-width:38rem;">
+                    I lead transformation with <strong style="color:white; font-weight:600;">data and AI as the engines</strong> —<br>executive strategy, hands-on delivery, global scale.
+                </p>
+                <p style="font-size:1.0625rem; color:#64748b; margin:0 0 2.75rem; max-width:32rem; line-height:1.6;">
+                    20 years building, leading, and scaling data & technology organisations at global scale.
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:1rem;">
+                    <a href="#contact" style="padding:0.8125rem 1.625rem; background:#2563eb; color:white; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem;" onmouseover="this.style.background='#3b82f6'; this.style.boxShadow='0 8px 24px rgba(59,130,246,0.3)'" onmouseout="this.style.background='#2563eb'; this.style.boxShadow='none'">
+                        Get in touch
+                    </a>
+                    <a href="#career" style="padding:0.8125rem 1.625rem; border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; font-weight:500; border-radius:0.625rem; text-decoration:none; transition:all 0.2s ease; font-size:0.9375rem;" onmouseover="this.style.borderColor='rgba(255,255,255,0.25)'; this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='#cbd5e1'">
+                        View experience →
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Profile photo column -->
-        <div style="position:relative; display:flex; align-items:center; justify-content:center;">
-            <div style="position:relative; width:100%; max-width:400px; margin:0 auto;">
-                <img src="profile.jpg" alt="Gauthier Van Went" style="width:100%; border-radius:1.75rem; object-fit:cover; object-position:center 12%; aspect-ratio:3/4; filter:grayscale(20%) brightness(0.88);">
-                <div style="position:absolute; inset:0; border-radius:1.75rem; background:linear-gradient(to right, rgba(7,12,24,0.75) 0%, rgba(7,12,24,0) 38%), linear-gradient(to top, rgba(7,12,24,0.65) 0%, rgba(7,12,24,0) 28%);"></div>
-                <div style="position:absolute; bottom:-1.75rem; left:10%; right:10%; height:3.5rem; background:rgba(59,130,246,0.1); filter:blur(30px); border-radius:9999px;"></div>
-            </div>
-        </div>
-
-        </div><!-- end hero 2-col grid -->
+        </div><!-- end hero-layout -->
 
         <!-- Stats strip -->
         <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:4.5rem;">
