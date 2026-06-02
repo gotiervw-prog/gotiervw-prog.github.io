@@ -208,6 +208,26 @@
         .nav-btn .nb-label { font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: #334155; display: block; }
 
         svg { display: block; flex-shrink: 0; }
+
+        /* ─── MOBILE ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+            html, body { height: auto !important; overflow-y: auto !important; }
+            .shell { height: auto !important; display: flex; flex-direction: column; }
+            .main-grid { grid-template-columns: 1fr !important; overflow: visible !important; height: auto !important; }
+            .left-panel { overflow: visible !important; height: auto !important; grid-template-rows: auto auto !important; }
+            .right-panel { grid-template-rows: repeat(4, auto) !important; overflow: visible !important; height: auto !important; }
+            .kpi-grid { grid-template-columns: repeat(2,1fr) !important; height: auto !important; }
+            .kpi-block { overflow: visible !important; height: auto !important; }
+            .overview-block { padding: 1rem !important; }
+            .kpi-block { padding: 1rem !important; }
+            .detail-section { overflow: visible !important; padding: 1rem !important; }
+            .title-bar { height: auto !important; padding: 0.875rem 1.25rem !important; }
+            .title-meta { font-size: 9px !important; letter-spacing: .06em !important; }
+            .page-title { font-size: 1.25rem !important; }
+            .top-nav { padding: 0 1rem !important; }
+            .top-nav a[href]:last-child span:not(.nb-label) { display: none; }
+            .bottom-nav { padding: 0 1rem !important; font-size: 11px !important; }
+        }
     </style>
 </head>
 <body>

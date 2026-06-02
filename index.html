@@ -127,8 +127,11 @@
             div[style*="gap:4rem; align-items:center"] {
                 grid-template-columns: 1fr !important;
             }
-            /* Hide profile photo on mobile */
-            div:has(> img[src="profile.jpg"]) { display: none !important; }
+            /* Profile photo: centred and compact on mobile */
+            div:has(> img[src="profile.jpg"]) {
+                max-width: 180px !important;
+                margin: 0 auto !important;
+            }
 
             /* Stats: 2×2 grid */
             div[style*="repeat(4,1fr)"] {
