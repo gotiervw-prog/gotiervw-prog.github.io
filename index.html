@@ -123,14 +123,21 @@
             /* All content containers: tighter horizontal padding */
             div[style*="max-width:72rem"] { padding-left: 1rem !important; padding-right: 1rem !important; }
 
-            /* Hero: stack to single column */
+            /* Hero: keep 2-col, narrow photo column */
             div[style*="gap:4rem; align-items:center"] {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr 88px !important;
+                gap: 1rem !important;
+                align-items: flex-start !important;
             }
-            /* Profile photo: centred and compact on mobile */
+            /* Profile photo: small rounded portrait next to name */
             div:has(> img[src="profile.jpg"]) {
-                max-width: 180px !important;
-                margin: 0 auto !important;
+                max-width: 88px !important;
+                margin: 0.375rem 0 0 !important;
+            }
+            div:has(> img[src="profile.jpg"]) img {
+                border-radius: 0.875rem !important;
+                aspect-ratio: 3/4 !important;
+                object-position: center 10% !important;
             }
 
             /* Stats: 2×2 grid */
