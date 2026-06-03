@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Preview Mockup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #f3f2ef;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* LinkedIn post wrapper */
+        .post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.06);
+            width: 100%;
+            max-width: 560px;
+            overflow: hidden;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px 0;
+        }
+
+        .avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #0077b5;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 600; font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .post-meta { flex: 1; }
+        .post-name { font-size: 14px; font-weight: 600; color: #000; line-height: 1.3; }
+        .post-role { font-size: 12px; color: #666; }
+        .post-time { font-size: 11px; color: #999; margin-top: 1px; }
+
+        .post-text {
+            padding: 10px 16px 12px;
+            font-size: 14px;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .post-text span { color: #0077b5; }
+
+        /* ── THE LINK PREVIEW CARD ── */
+        .link-card {
+            margin: 0 0 0 0;
+            border-top: 1px solid #e8e8e8;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .link-card:hover { background: #f9f9f9; }
+
+        /* WITHOUT Open Graph — just a URL */
+        .card-plain {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-plain-icon {
+            width: 32px; height: 32px;
+            border-radius: 4px;
+            background: #e8e8e8;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .card-plain-url { font-size: 13px; color: #0077b5; }
+        .card-plain-domain { font-size: 11px; color: #999; margin-top: 2px; }
+
+        /* WITH Open Graph — rich card */
+        .card-rich {
+            overflow: hidden;
+        }
+        .card-rich-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+            filter: grayscale(20%) brightness(0.92);
+        }
+        .card-rich-body {
+            padding: 10px 14px 12px;
+            border-top: 1px solid #e8e8e8;
+        }
+        .card-rich-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+            line-height: 1.35;
+        }
+        .card-rich-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-rich-domain {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .post-actions {
+            display: flex;
+            padding: 4px 8px;
+            border-top: 1px solid #e8e8e8;
+            gap: 4px;
+        }
+        .post-action {
+            flex: 1;
+            padding: 8px 4px;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .post-action:hover { background: #f3f2ef; }
+
+        /* Comparison layout */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
+            align-items: start;
+        }
+
+        .comparison-label {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+        .label-before { background: #fee2e2; color: #991b1b; }
+        .label-after  { background: #dcfce7; color: #166534; }
+
+        .col { display: flex; flex-direction: column; align-items: center; }
+
+        @media (max-width: 700px) {
+            .comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <p class="label" style="font-size:15px; font-weight:600; color:#1a1a1a; margin-bottom:2rem;">
+        What happens when you share your URL on LinkedIn
+    </p>
+
+    <div class="comparison">
+
+        <!-- WITHOUT -->
+        <div class="col">
+            <span class="comparison-label label-before">❌ Without Open Graph — now</span>
+            <div class="post" style="max-width:100%;">
+                <div class="post-header">
+                    <div class="avatar">GV</div>
+                    <div class="post-meta">
+                        <div class="post-name">Gauthier Van Went</div>
+                        <div class="post-role">Data & Transformation Executive</div>
+                        <div class="post-time">Just now · 🌐</div>
+                    </div>
+                </div>
+                <div class="post-text">
+                    Excited to share my professional profile — built entirely with Claude Code 🚀<br><br>
+                    <span>#AI #ClaudeCode #Transformation</span>
+                </div>
+                <div class="link-card">
+                    <div class="card-plain">
+                        <div class="card-plain-icon">
+                            <svg width="16" height="16" fill="none" stroke="#999" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                        </div>
+                        <div>
+                            <div class="card-plain-url">gotiervw-prog.github.io</div>
+                            <div class="card-plain-domain">gotiervw-prog.github.io</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">👍 Like</div>
+                    <div class="post-action">💬 Comment</div>
+                    <div class="post-action">↗️ Repost</div>
+                    <div class="post-action">📤 Send</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WITH -->
+        <div class="col">
+            <span class="comparison-label label-after">✅ With Open Graph — after</span>
+            <div class="post" style="max-width:100%;">
+                <div class="post-header">
+                    <div class="avatar">GV</div>
+                    <div class="post-meta">
+                        <div class="post-name">Gauthier Van Went</div>
+                        <div class="post-role">Data & Transformation Executive</div>
+                        <div class="post-time">Just now · 🌐</div>
+                    </div>
+                </div>
+                <div class="post-text">
+                    Excited to share my professional profile — built entirely with Claude Code 🚀<br><br>
+                    <span>#AI #ClaudeCode #Transformation</span>
+                </div>
+                <div class="link-card">
+                    <div class="card-rich">
+                        <img class="card-rich-image" src="profile.jpg" alt="Gauthier Van Went">
+                        <div class="card-rich-body">
+                            <div class="card-rich-title">Gauthier Van Went — Transformation & Data Leader</div>
+                            <div class="card-rich-desc">I lead transformation with data and AI as the engines — executive strategy, hands-on delivery, global scale. 20 years building and scaling data & technology organisations.</div>
+                            <div class="card-rich-domain">gotiervw-prog.github.io</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">👍 Like</div>
+                    <div class="post-action">💬 Comment</div>
+                    <div class="post-action">↗️ Repost</div>
+                    <div class="post-action">📤 Send</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <p style="margin-top:2rem; font-size:12px; color:#999; text-align:center;">
+        5 lines of code · 10 minutes · significant difference in click-through rate
+    </p>
+
+</body>
+</html>
